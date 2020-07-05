@@ -12,7 +12,7 @@
 
     <groupId>com.autentia.example.micronaut</groupId>
     <artifactId>micronaut-java-parent-example</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.2-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <properties>
@@ -44,7 +44,7 @@
         <plugins>
             <plugin>
                 <!-- Activate integration tests -->
-                <!-- This plugin is preconfigured in micronaut-java-parent so you only need to declare it -->
+                <!-- This plugin is preconfigured in micronaut-base-parent so you only need to declare it -->
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
             </plugin>
