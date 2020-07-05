@@ -7,7 +7,7 @@
     <parent>
         <groupId>com.autentia</groupId>
         <artifactId>micronaut-java-parent</artifactId>
-        <version>1.3.5</version>
+        <version>2.0.0</version>
     </parent>
 
     <groupId>com.autentia.example.micronaut</groupId>
@@ -63,7 +63,6 @@
     </dependencyManagement>
 
     <dependencies>
-        <!-- Activate integration tests -->
         <!-- The annotation processor is preconfigured in micronaut-java-parent so you only need to add this dependency  -->
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -71,14 +70,14 @@
         </dependency>
 
         <!-- Add the Micronaut dependencies you want to use -->
-        <!-- Do not worry about versions, they are preconfigured in micronaut-java-parent that uses Micronaut BOM -->
+        <!-- Do not worry about versions, they are preconfigured in micronaut-java-parent that uses the official Micronaut BOM -->
         <dependency>
             <groupId>io.micronaut</groupId>
             <artifactId>micronaut-runtime</artifactId>
         </dependency>
         <dependency>
-            <groupId>io.micronaut.configuration</groupId>
-            <artifactId>micronaut-hibernate-validator</artifactId>
+            <groupId>io.micronaut</groupId>
+            <artifactId>micronaut-validation</artifactId>
         </dependency>
 
         <!-- Logging system is already integrated with Micronaut so only need to add the dependency to use it -->

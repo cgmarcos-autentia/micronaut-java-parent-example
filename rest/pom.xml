@@ -60,19 +60,16 @@
             <artifactId>micronaut-management</artifactId>
         </dependency>
         <dependency>
-            <groupId>io.micronaut.configuration</groupId>
+            <groupId>io.micronaut.sql</groupId>
             <artifactId>micronaut-jdbc-hikari</artifactId>
+            <scope>runtime</scope>
         </dependency>
         <dependency>
-            <groupId>io.micronaut.configuration</groupId>
-            <artifactId>micronaut-flyway</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.micronaut.configuration</groupId>
+            <groupId>io.micronaut.security</groupId>
             <artifactId>micronaut-security-oauth2</artifactId>
         </dependency>
         <dependency>
-            <groupId>io.micronaut</groupId>
+            <groupId>io.micronaut.security</groupId>
             <artifactId>micronaut-security-jwt</artifactId>
         </dependency>
         <dependency>

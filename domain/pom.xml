@@ -69,7 +69,7 @@
     <dependencies>
         <!-- Use Micronaut integration with Spring to use @Transactional and JdbcTemplate -->
         <dependency>
-            <groupId>io.micronaut</groupId>
+            <groupId>io.micronaut.spring</groupId>
             <artifactId>micronaut-spring</artifactId>
         </dependency>
         <dependency>
@@ -79,7 +79,7 @@
 
         <!-- Use Flyway to manage automatically database changes -->
         <dependency>
-            <groupId>io.micronaut.configuration</groupId>
+            <groupId>io.micronaut.flyway</groupId>
             <artifactId>micronaut-flyway</artifactId>
             <scope>runtime</scope>
         </dependency>
@@ -87,11 +87,11 @@
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <scope>runtime</scope>
+            <scope>test</scope>
         </dependency>
 
         <dependency>
-            <groupId>io.micronaut.configuration</groupId>
+            <groupId>io.micronaut.sql</groupId>
             <artifactId>micronaut-jdbc-hikari</artifactId>
             <scope>test</scope>
         </dependency>
