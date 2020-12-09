@@ -2,42 +2,45 @@ package com.autentia.example.micronaut.todo.persistence.jdbc;
 
 import com.autentia.example.micronaut.todo.Todo;
 import com.autentia.example.micronaut.todo.persistence.TodoRepository;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
+import io.micronaut.data.jdbc.runtime.JdbcOperations;
 
 import javax.inject.Singleton;
-import java.time.LocalDateTime;
 import java.util.List;
+
+import static java.util.stream.Collectors.toUnmodifiableList;
 
 @Singleton
 class JdbcTodoRepository implements TodoRepository {
 
-    private static final String TABLE = "Todo";
-    private static final String ALL_COLUMNS = "id, title, creationDate, doneDate";
-    private static final String SELECT_ALL = "select " + ALL_COLUMNS + " from " + TABLE + " order by creationDate asc";
-    private static final String SELECT_BY_ID = "select " + ALL_COLUMNS + " from " + TABLE + " where id=?";
+    private static final String TABLE = "todo";
+    private static final String COLUMNS = "id, title, creation_date, done_date";
+    private static final String SELECT = "select " + COLUMNS + " from " + TABLE;
+    private static final String SELECT_ALL = SELECT + " order by creation_date asc";
+    private static final String SELECT_BY_ID = SELECT + " where id=? order by creation_date asc";
 
-    private final JdbcTemplate jdbcTemplate;
+    private final JdbcOperations jdbc;
 
-    JdbcTodoRepository(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
+    JdbcTodoRepository(JdbcOperations jdbc) {
+        this.jdbc = jdbc;
     }
 
     @Override
     public List<Todo> findAll() {
-        return jdbcTemplate.query(SELECT_ALL, TODO_ROW_MAPPER);
+        return jdbc.prepareStatement(SELECT_ALL, ps -> {
+            final var rs = ps.executeQuery();
+            return jdbc.entityStream(rs, Todo.class)
+                    .collect(toUnmodifiableList());
+        });
     }
 
     @Override
     public Todo findBy(int id) {
-        return jdbcTemplate.queryForObject(SELECT_BY_ID, TODO_ROW_MAPPER, id);
+        return jdbc.prepareStatement(SELECT_BY_ID, ps -> {
+            ps.setInt(1, id);
+            final var rs = ps.executeQuery();
+            if (!rs.next()) throw new IllegalArgumentException("Cannot find id " + id);
+            return jdbc.readEntity(rs, Todo.class);
+        });
     }
-
-    private static final RowMapper<Todo> TODO_ROW_MAPPER = (rs, rowNum) -> new Todo(
-            rs.getInt("id"),
-            rs.getString("title"),
-            rs.getObject("creationDate", LocalDateTime.class),
-            rs.getObject("doneDate", LocalDateTime.class)
-    );
 
 }

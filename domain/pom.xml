@@ -67,14 +67,11 @@
     </build>
 
     <dependencies>
-        <!-- Use Micronaut integration with Spring to use @Transactional and JdbcTemplate -->
+
+        <!-- Use Micronaut data to use @Transactional and JdbcOperations -->
         <dependency>
-            <groupId>io.micronaut.spring</groupId>
-            <artifactId>micronaut-spring</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-jdbc</artifactId>
+            <groupId>io.micronaut.data</groupId>
+            <artifactId>micronaut-data-jdbc</artifactId>
         </dependency>
 
         <!-- Use Flyway to manage automatically database changes -->

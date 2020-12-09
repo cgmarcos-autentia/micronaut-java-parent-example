@@ -2,7 +2,7 @@ package com.autentia.example.micronaut.todo.persistence.jdbc;
 
 import com.autentia.example.micronaut.todo.Todo;
 import com.autentia.example.micronaut.todo.persistence.TodoRepository;
-import io.micronaut.test.annotation.MicronautTest;
+import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 import org.junit.jupiter.api.Test;
 
 import javax.inject.Inject;
