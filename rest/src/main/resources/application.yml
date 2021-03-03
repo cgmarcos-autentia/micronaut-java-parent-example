@@ -2,6 +2,10 @@ micronaut:
   application:
     name: todo
 
+  security:
+    enabled: false
+
+
 jackson:
   serialization:
     writeDatesAsTimestamps: false
